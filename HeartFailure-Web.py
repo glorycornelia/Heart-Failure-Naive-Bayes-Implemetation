@@ -1,8 +1,17 @@
+import json
 import pickle
 import streamlit as st
 import pandas as pd
 from streamlit_option_menu import option_menu
+from streamlit_lottie import st_lottie
 
+def load_lottiefile(filepath: str):
+    with open(filepath, "r") as f:
+        return json.load(f)
+
+# Load lottie file
+loaded_lottie = load_lottiefile('Animation/heart_animation.json')
+st_lottie(loaded_lottie, speed=0.5,reverse=False,loop=True,quality="low",height=200,width=200)
 
 # loading the saved models
 heart_failure_model = pickle.load(open('gnb_model.sav','rb'))
@@ -87,3 +96,15 @@ if (selected == 'Heart Failure Prediction'):
           heart_diagnosis = 'The person does not have any heart Failure'
         
     st.success(heart_diagnosis)
+
+st.markdown("---")
+
+# Add your footer content using Markdown and HTML
+footer = """
+    <div style="text-align: center;">
+        <p>&copy; 2023 Heart Failure Prediction. All rights reserved.</p>
+        <p>Designed with ❤️ by Glory, Chienta, Nabila, Lazia</p>
+    </div>
+"""
+
+st.markdown(footer, unsafe_allow_html=True)
