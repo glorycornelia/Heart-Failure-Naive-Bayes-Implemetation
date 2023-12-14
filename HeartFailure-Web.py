@@ -2,6 +2,8 @@ import json
 import pickle
 import streamlit as st
 import pandas as pd
+import sys
+sys.path.insert(1, "D:\python\Lib\site-packages\streamlit_lottie")
 from streamlit_lottie import st_lottie
 
 def load_lottiefile(filepath: str):
